@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh 'sudo apt install git'
                 git url: 'https://github.com/adeelshafi79/java-hello-world-webapp.git', branch: 'master'
             }
         }
