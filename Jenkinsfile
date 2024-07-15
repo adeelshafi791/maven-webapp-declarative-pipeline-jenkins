@@ -38,8 +38,9 @@ pipeline {
         }
     }
     post {
-        always {
-            junit 'target/surefire-reports/*.xml'
-        }
+    always {
+        junit '**/target/surefire-reports/*.xml' // Adjust path as needed
     }
+}
+
 }
