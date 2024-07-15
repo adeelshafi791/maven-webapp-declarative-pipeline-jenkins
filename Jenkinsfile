@@ -10,7 +10,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'mvn clean install'
+                    
+                    sh 'mvn clean package'
                 }
             }
         }
@@ -29,7 +30,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'scp target/*.war jenkins@20.2.87.78:/home/jenkins/artifact/'
+                    deploy adapters: [tomcat9(credentialsId: 'jenkins', path: '', url: 'http://20.2.87.78:8080/')], contextPath: '/', war: '**/*.war'
+                    
                 }
             }
         }
