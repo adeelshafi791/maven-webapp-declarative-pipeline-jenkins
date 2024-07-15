@@ -28,19 +28,5 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.war', allowEmptyArchive: true
             }
         }
-        stage('Deploy') {
-            steps {
-                script {
-                    deploy adapters: [tomcat9(credentialsId: 'jenkins', path: '', url: 'http://20.2.87.78:8080/')], contextPath: '/', war: '**/*.war'
-                    
-                }
-            }
-        }
-    }
-    post {
-    always {
-        junit '**/target/surefire-reports/*.xml' // Adjust path as needed
-    }
-}
-
+ 
 }
